@@ -1,0 +1,17 @@
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csprojAssemblyReference.cache
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csproj.CoreCompileInputs.cache
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\bin\Debug\CommonLibrary.dll
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\bin\Debug\CommonLibrary.pdb
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csproj.CopyComplete
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.dll
+C:\Users\astellav\Documents\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.pdb
+C:\repos\All_apps\log-in_component\CommonLibrary\bin\Debug\CommonLibrary.dll
+C:\repos\All_apps\log-in_component\CommonLibrary\bin\Debug\CommonLibrary.pdb
+C:\repos\All_apps\log-in_component\CommonLibrary\bin\Debug\DotNetCasClient.dll
+C:\repos\All_apps\log-in_component\CommonLibrary\bin\Debug\DotNetCasClient.xml
+C:\repos\All_apps\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csprojAssemblyReference.cache
+C:\repos\All_apps\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csproj.CoreCompileInputs.cache
+C:\repos\All_apps\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.csproj.CopyComplete
+C:\repos\All_apps\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.dll
+C:\repos\All_apps\log-in_component\CommonLibrary\obj\Debug\CommonLibrary.pdb

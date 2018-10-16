@@ -1,0 +1,250 @@
+﻿@model CrossWalk.Models.AllMethods
+@{
+    ViewBag.Title = "SubDepts";
+}
+
+@*<h2>SubDepts</h2>
+    <h3>test data for records</h3>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+<body>
+  @if(Model.ListMethodsfast.Count+Model.ListMethodscoda.Count+Model.ListMethodsepic.Count+Model.ListMethodsgems.Count+Model.ListMethodssamas.Count+Model.ListMethodsidx.Count+Model.ListMethodsoasis.Count+Model.ListMethodsoasis.Count > 0)
+  {
+    <table>
+        <tbody>
+            <tr>
+
+                <td>
+
+                    <div id="assigned_dept_1" class="assignedDept">
+
+                        @if (@Model.ListMethodsfast.Count > 0)
+                        {
+                            <div id="fast_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:blue">FAST</span>
+                                <table id="fast_table">
+                                    <thead>
+                                        <tr>
+
+                                            <th>USF_DEPT_CODE</th>
+                                            <th>USF_DEPT_NAME</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.ListMethodsfast)
+                                        {
+                                            <tr id=" SC_FAST_GK_DK_@item.KEY_USF_DEPT" onclick="getdptkey($(this).attr('id'))" onmouseover="this.className='trHover';" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                @*@if (item != null)
+                                                {
+
+                                                }
+                                                else { }*@
+                                                <td data-toggle="modal" data-target="#myModal">@item.USF_DEPT_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@item.USF_DEPT_NAME</td>
+
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodssamas.Count > 0)
+                        {
+                            <div id="samas_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:red" >SAMAS</span>
+                                <table id="samas_table">
+                                    <thead>
+                                        <tr>
+                                            <th>SAMAS_DEPT</th>
+                                            <th>SAMAS_TITLE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var samas in Model.ListMethodssamas)
+                                        {
+                                            <tr id="SC_SAMAS_GK_DK_@samas.KEY_SAMAS_DEPT" onclick="getdptkey($(this).attr('id'))" onmouseover="this.className='trHover';" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                @*<td data-toggle="modal" data-target="#myModal">@samas.KEY_SAMAS_DEPT</td>*@
+                                                <td data-toggle="modal" data-target="#myModal">@samas.SAMAS_TITLE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@samas.SAMAS_DEPT</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodsbanner.Count > 0)
+                        {
+                            <div id="banner_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:forestgreen">Banner</span>
+                                <table id="banner_table">
+                                    <thead>
+                                        <tr>
+                                            <th>MDBANNER_DEPT_CODE</th>
+                                            <th>MDBANNER_DEPT_DESC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var banner in Model.ListMethodsbanner)
+                                        {
+                                            <tr id="SC_BANNER_GK_DK_@banner.KEY_MDBANNER_DEPT" onmouseover="this.className='trHover';" onclick="getdptkey($(this).attr('id'))" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@banner.MDBANNER_DEPT_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@banner.MDBANNER_DEPT_DESC</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodsepic.Count > 0)
+                        {
+                            <div id="epic_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:sandybrown">Epic</span>
+                                <table id="epic_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                DEPARTMENT_EPIC_ID
+                                            </th>
+                                            <th>DEPARTMENT_EXTERNAL_NAME</th>
+                                            <th>DEPARTMENT_NAME</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var epic in Model.ListMethodsepic)
+                                        {
+                                            <tr id="SC_EPIC_GK_DK_@epic.KEY_EPIC_DEPT" onmouseover="this.className='trHover';" onclick="getdptkey($(this).attr('id'))" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@epic.DEPARTMENT_EPIC_ID</td>
+                                                <td data-toggle="modal" data-target="#myModal">@epic.SERVICE_AREA_NAME</td>
+                                                <td data-toggle="modal" data-target="#myModal">@epic.DEPARTMENT_EXTERNAL_NAME</td>
+                                                <td data-toggle="modal" data-target="#myModal">@epic.DEPARTMENT_NAME</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodscoda.Count > 0)
+                        {
+                            <div id="coda_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:blueviolet">Coda</span>
+                                <table id="epic_table">
+                                    <thead>
+                                        <tr>
+                                            <th>USFPG_COMPANY_CODE</th>
+                                            <th>USFPG_DEPT_DIV_CODE	</th>
+                                            <th>USFPG_DEPT_NAME	</th>
+                                            <th>USFPG_DIV_NAME	</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var coda in Model.ListMethodscoda)
+                                        {
+                                            <tr id="SC_CODA_GK_DK_@coda.KEY_USFPG_DEPT" onmouseover="this.className='trHover';" onclick="getdptkey($(this).attr('id'))" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@coda.USFPG_COMPANY_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@coda.USFPG_DEPT_DIV_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@coda.USFPG_DEPT_NAME</td>
+                                                <td data-toggle="modal" data-target="#myModal">@coda.USFPG_DIV_NAME</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodsgems.Count > 0)
+                        {
+                            <div id="gems_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:lightseagreen">Gems</span>
+                                <table id="gems_table">
+                                    <thead>
+                                        <tr>
+                                            <th>GEMS_DEPT_CODE</th>
+                                            <th>GEMS_DEPT_DESC	</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var gems in Model.ListMethodsgems)
+                                        {
+                                            <tr id="SC_GEMS_GK_DK_@gems.KEY_GEMS_DEPT" onclick="getdptkey($(this).attr('id'))" onmouseover="this.className='trHover';" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@gems.GEMS_DEPT_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@gems.GEMS_DEPT_DESC</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodsoasis.Count > 0)
+                        {
+                            <div id="oasis_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:mediumvioletred">Oasis</span>
+                                <table id="oasis_table">
+                                    <thead>
+                                        <tr>
+                                            <th>OASIS_DEPT_CODE</th>
+                                            <th>OASIS_DEPT_DESC	</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var oasis in Model.ListMethodsoasis)
+                                        {
+                                            <tr id="SC_OASIS_GK_DK_@oasis.KEY_OASIS_DEPT" onclick="getdptkey($(this).attr('id'))" onmouseover="this.className='trHover';" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@oasis.OASIS_DEPT_CODE</td>
+                                                <td data-toggle="modal" data-target="#myModal">@oasis.OASIS_DEPT_DESC</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                        @if (Model.ListMethodsidx.Count > 0)
+                        {
+                            <div id="idx_dept_1" class="systemListing">
+                                <span class="system_heading" style="color:magenta">IDX</span>
+                                <table id="idx_table">
+                                    <thead>
+                                        <tr>
+                                            <th>DIV_MNEMONIC</th>
+                                            <th>DIV_NAME</th>
+                                            <th>DIV_REPORTINGCATEGORY3</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var idx in Model.ListMethodsidx)
+                                        {
+                                            <tr id="SC_IDX_GK_DK_@idx.KEY_USFPG_DIV" onclick="getdptkey($(this).attr('id'))" onmouseover="this.className='trHover';" onmouseout="this.className='trNoHover';" class="trNoHover">
+                                                <td data-toggle="modal" data-target="#myModal">@idx.DIV_MNEMONIC</td>
+                                                <td data-toggle="modal" data-target="#myModal">@idx.DIV_NAME</td>
+                                                <td data-toggle="modal" data-target="#myModal">@idx.DIV_REPORTINGCATEGORY3</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+  }
+  else
+  {
+    <div>No records available for this global department.</div> 
+  }
+
+</body>

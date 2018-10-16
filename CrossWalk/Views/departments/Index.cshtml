@@ -1,0 +1,182 @@
+﻿@model IEnumerable<API.Models.Departments>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+    function toggle(KEY) {
+        if (document.getElementById("hiddenrow_" +KEY).style.display == 'none') {
+            document.getElementById("hiddenrow_" + KEY).style.display = 'table-row';
+
+        } else {
+            document.getElementById("hiddenrow_" + KEY).style.display = 'none';
+            
+        }
+        $('#hiddenkey').val(KEY);
+        //var key = $("#KEY").text(); 
+        trigger(KEY);
+        
+    }
+
+    function trigger(KEY) {
+        $.ajax({
+            url: '/departments/SubDepts',
+            dataType: "html",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            //data: { 'KEY': $("#KEY").text() },
+            data: JSON.stringify({ KEY: KEY }),
+            //datatype: "json",
+            //traditional: true,
+            cache: false,
+            success: function (response) {
+                $("#getview_" + KEY).html(response)
+
+                //alert('Success');
+
+            },
+            error: function (xhr) {
+                alert('No Valid Data');
+            }
+        })
+
+    }
+
+    function getdptkey(trid) {
+        debugger;
+        $('#hiddenform').val(trid);;
+    }
+
+    function RessaignDept() {
+
+        var errorMsg = null;
+        var ddlitem = $('#reassignddl').val();
+        if (ddlitem == "") {
+            errorMsg = 'Please select a global department for the assignment.';
+        }
+
+        if (ddlitem == $('#hiddenkey').val()) {
+            errorMsg = 'Please select a different global department than the currently assigned department.';
+        }
+
+        var idArray = $('#hiddenform').val().split('_');
+        var dptkey = idArray[4];
+        var source = idArray[1];
+        var personid = '2873183';
+
+        var hiddenkey = $('#hiddenkey').val();
+
+        if (errorMsg == null) {
+            $.ajax({
+                url: '/departments/ReassignDepartment',
+                dataType: "html",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                //data: { 'KEY': $("#KEY").text() },
+                data: JSON.stringify({ ddl: ddlitem, deptkey: dptkey, source: source, personid: personid }),
+                //datatype: "json",
+                //traditional: true,
+                cache: false,
+                success: function (result) {
+
+                    
+                 //matchDisplayAssignmentChange(result, ddlitem, $('#hiddenkey').val());
+                    $("#closebtn").trigger("click");
+
+                   // $("#getview_" + key_).load('/departments/SubDepts'); 
+                   // location.reload('/departments/SubDepts');
+                   // $("#opnrw").trigger("click");
+                    trigger(hiddenkey);
+                    //alert('Success');
+
+                },
+                error: function (xhr) {
+                    alert('No Valid Data');
+                }
+            });
+        }
+        else {
+            alert(errorMsg);
+        }
+
+    }
+
+
+</script>
+
+<h2>Global Departments</h2>
+
+<div>
+    <table>
+
+        @foreach (var gb in Model)
+        {
+            <tr id="sldrw">
+                <td id="opnrw" class="glyphicon glyphicon-chevron-right" onClick="toggle(@gb.KEY_GLOBAL_DEPT);">
+                    &nbsp; 
+                </td>
+                <td>@gb.GLOBAL_DEPT_NAME</td>
+                <td id="keyval" style="display:none;"><label Name="KEY" id="KEY" value="@gb.KEY_GLOBAL_DEPT">@gb.KEY_GLOBAL_DEPT</label></td>
+            </tr>
+            <tr id="hiddenrow_@gb.KEY_GLOBAL_DEPT" style="display:none;">
+                <td>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;  </td>
+                <td colspan="2">
+                    <table>
+                        <tbody>
+                            <tr>
+                               <td>
+                                   <div id="getview_@gb.KEY_GLOBAL_DEPT">
+                                       
+                                   </div>
+                               </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class=modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reassign:</h4>
+            </div>
+            <div class="modal-body">
+               
+                <select id="reassignddl" style="width:460px">
+                    <option value="">Select Department</option>
+                    @foreach (var item in (Model as List<API.Models.Departments>))
+                    {
+
+                        <option value="@item.KEY_GLOBAL_DEPT">@item.GLOBAL_DEPT_NAME</option>
+                    }
+                    <input type="hidden" id="hiddenform" />
+                    <input type="hidden" id="hiddenkey" />
+                </select>
+                
+
+
+                <button type="button" class="btn btn-primary btn-sm" onclick="RessaignDept()" >Ressaign</button>
+            </div>
+            <div class="modal-footer">
+                <button id="closebtn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
