@@ -5,6 +5,6 @@ COPY . 'C:\\build\\'
 WORKDIR 'C:\\build\\'
  
 RUN ["nuget.exe", "restore"]
-RUN ["msbuild", "C:\\build\\HelloWorld.sln"]
+RUN ["msbuild", "C:\\build\\log-in_component.sln"]
 
-CMD ["powershell"]
+CMD ["powershell"]	
